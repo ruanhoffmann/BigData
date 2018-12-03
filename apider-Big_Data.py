@@ -2,6 +2,7 @@ from pyspark import SparkContext, SparkConf
 import findspark
 import scrapy
 
+#inicializa o Spark
 findspark.init("/home/fabrica/spark-2.4.0-bin-hadoop2.7/")
 
 #scrapy que lê a página e retorna um arquivo .json com as palavras
