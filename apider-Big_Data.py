@@ -1,5 +1,8 @@
 from pyspark import SparkContext, SparkConf
+import findspark
 import scrapy
+
+findspark.init("/home/fabrica/spark-2.4.0-bin-hadoop2.7/")
 
 #scrapy que lê a página e retorna um arquivo .json com as palavras
 class MainSpider(scrapy.Spider):
@@ -16,12 +19,11 @@ class MainSpider(scrapy.Spider):
             yield {
                 'text': text
             }
-
-
-#aplicação spark que importa o arquivo .json          
-conf = SparkConf().setAppName("WordCount")                          #cria o app Counter
+#aplicação spark que importa o arquivo .json
+conf = SparkConf().setAppName("WordCount")                          #cria o app
 sc = SparkContext.getOrCreate()                                     #instancia SparkContext
-rdd = sc.textFile('<path-to-data>texts.json')                       #chama o arquivo .json do scrapy
+contentRDD = sc.textFile("/home/fabrica/BigData/texts.json/")       #chama o arquivo .json do scrapy
+rdd = sc.textFile('<path-to-data>/bigdata.txt')                     
 filter_empty_lines = contentRDD.filter(lambda x: len(x) > 0)        #elimina linhas em branco
 words = filter_empty_lines.flatMap(lambda x: x.split(' '))          #splita as palavras pelo espaço em branco
 
