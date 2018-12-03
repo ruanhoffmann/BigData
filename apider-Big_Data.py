@@ -21,7 +21,7 @@ class MainSpider(scrapy.Spider):
 #aplicação spark que importa o arquivo .json          
 conf = SparkConf().setAppName("WordCount")                          #cria o app Counter
 sc = SparkContext.getOrCreate()                                     #instancia SparkContext
-rdd = sc.textFile('<path-to-data>/bigdata.txt')                     #chama o arquivo .json do scrapy
+rdd = sc.textFile('<path-to-data>texts.json')                     #chama o arquivo .json do scrapy
 filter_empty_lines = contentRDD.filter(lambda x: len(x) > 0)        #elmina linhas em branco
 words = filter_empty_lines.flatMap(lambda x: x.split(' '))          #splita as palavras pelo espaço em branco
 
