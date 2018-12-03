@@ -16,6 +16,8 @@ class MainSpider(scrapy.Spider):
             yield {
                 'text': text
             }
+
+
 #aplicação spark que importa o arquivo .json          
 conf = SparkConf().setAppName("WordCount")                          #cria o app Counter
 sc = SparkContext.getOrCreate()                                     #instancia SparkContext
