@@ -33,4 +33,4 @@ wordcount = words.map(lambda x:(x,1)) \
 for word in wordcount.collect():
     print(word)
 
-wordcount.saveAsTextFile("/home/thiago/Counter")
+wordcount.saveAsTextFile("WordCount")
